@@ -1,17 +1,49 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
 
+function key(props) {
+  return (
+    <button className='key' onClick={props.onClick}>
+      {props.value}
+    </button>
+  )
+}
+
+class Keyboard extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      number: [0,1,2,3,4,5,6,7,8,9],
+      operator: ['+','-','*','/'],
+    };
+  }
+
+  renderNumberKey(number) {
+    return (
+      <Key value={this.state.number[number]}/>
+    )
+  }  
+
+  renderOperatorKey(operator) {
+    return (
+      <Key value={this.state.operator[operator]}/>
+    )
+  }
+
+  render() {
+    return (
+      null
+    )
+  }
+}
+
+// =======================================================================
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <App />
   </React.StrictMode>
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+const lastResults = [];
+const pressedKeys = [];
